@@ -4,7 +4,7 @@ Android Auto 연결 직후 AA 화면에 목적지 추천 팝업을 띄우고, �
 
 ## 설치
 
-1. `gradlew assembleDebug` → `app/build/outputs/apk/debug/app-debug.apk`를 휴대폰에 설치.
+1. [최신 릴리스](https://github.com/Leepy0/AA_NAVI/releases/latest)의 `AA_NAVI.apk`를 휴대폰에 설치. 로컬 디버그 빌드는 서명이 달라 자동 업데이트를 받을 수 없다.
 2. Android Auto 설정 → 버전 항목 10번 탭 → 개발자 설정 → **알 수 없는 출처** 켜기.
 3. 휴대폰에서 앱을 한 번 열고 알림 권한 허용. 앱 프로세스가 살아 있어야 연결을 감지한다.
 
@@ -20,3 +20,9 @@ Android Auto 연결 직후 AA 화면에 목적지 추천 팝업을 띄우고, �
 | 6 | AA 앱 목록 → AA 내비 시험 | 목록의 각 줄 | 3~5를 팝업 없이 반복 |
 
 결과는 휴대폰 앱 화면 아래 기록과 `adb logcat -s AANAVI`에 남는다.
+
+## 자동 업데이트
+
+- `version.properties`의 `versionName`을 올려 main에 push하면 CI(`.github/workflows/android.yml`)가 `vX.Y.Z` 릴리스를 만든다. 자산은 `AA_NAVI.apk`, `.sha256`, `AA_NAVI.json`.
+- 앱은 열 때마다 `releases/latest/download/AA_NAVI.json`을 확인해 새 버전이면 묻고, SHA-256이 맞을 때만 시스템 설치 화면을 연다.
+- 서명 키는 저장소 밖에 있다. CI는 Secrets `AA_NAVI_KEYSTORE_BASE64`, `AA_NAVI_KEYSTORE_PASSWORD`를 쓴다. 키를 잃으면 설치본을 업데이트할 수 없으니 백업한다.

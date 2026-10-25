@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 자동 업데이트. 설치는 Android 시스템 설치 화면에서 사용자가 확인한다. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!-- Android 11+ 패키지 가시성: 내비 앱 설치 여부 확인과 URL 호출 -->
     <queries>
@@ -49,6 +52,16 @@
             android:exported="false"
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.NoDisplay" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <service
             android:name=".car.NaviCarAppService"
