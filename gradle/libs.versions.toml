@@ -1,0 +1,11 @@
+[versions]
+agp = "9.4.1"
+carApp = "1.7.0"
+coreKtx = "1.19.1"
+
+[libraries]
+androidx-car-app = { module = "androidx.car.app:app", version.ref = "carApp" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
