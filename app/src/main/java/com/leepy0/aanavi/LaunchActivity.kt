@@ -7,7 +7,7 @@ import android.os.Bundle
 class LaunchActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val target = intent.getStringExtra(EXTRA_TARGET)?.let { Target.valueOf(it) } ?: Target.TMAP_RGO
+        val target = intent.getStringExtra(EXTRA_TARGET)?.let { Target.valueOf(it) } ?: Target.TMAP_GOAL
         target.launch(this, "알림 버튼(폰)")
         finish()
     }

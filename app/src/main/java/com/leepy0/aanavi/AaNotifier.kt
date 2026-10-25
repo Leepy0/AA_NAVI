@@ -36,14 +36,14 @@ object AaNotifier {
         )
         val phoneTmap = PendingIntent.getActivity(
             ctx, 2,
-            Intent(ctx, LaunchActivity::class.java).putExtra(LaunchActivity.EXTRA_TARGET, Target.TMAP_RGO.name),
+            Intent(ctx, LaunchActivity::class.java).putExtra(LaunchActivity.EXTRA_TARGET, Target.TMAP_GOAL.name),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
         val viaCarApp = CarPendingIntent.getCarApp(
             ctx, 3,
             Intent(Intent.ACTION_VIEW)
                 .setComponent(ComponentName(ctx, NaviCarAppService::class.java))
-                .putExtra(LaunchActivity.EXTRA_TARGET, Target.TMAP_RGO.name),
+                .putExtra(LaunchActivity.EXTRA_TARGET, Target.TMAP_GOAL.name),
             0,
         )
 
